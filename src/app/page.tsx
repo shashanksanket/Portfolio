@@ -10,6 +10,7 @@ export default function LandingPage() {
     <main className="flex flex-col ">
       <SectionSummary/>
       <AboutMe/>
+      <SkillsSection/>
       <Projects/>
       <Contact/>
       <Footer/>

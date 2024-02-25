@@ -1,8 +1,10 @@
 "use client"
 import React, { useState } from 'react';
+import { Label, Switch } from "@medusajs/ui"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLight, setIsLight] = useState(false)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -33,12 +35,11 @@ export default function Navbar() {
             <p className="cursor-pointer transition-all duration-300 hover:bg-black rounded-lg px-2 mb-2">Contact</p>
           </div>
         )}
-        <div className="hidden lg:flex justify-evenly w-full">
-          <p className="cursor-pointer">Light</p>
-          <p className="cursor-pointer">Toggle</p>
-          <p className="cursor-pointer">Dark</p>
-        </div>
-        <button className="bg-slate-700 w-fit text-nowrap text-white py-2 px-4 font-bold rounded-lg hover:bg-slate-400 transition-all duration-700 hover:text-black">Contact Me</button>
+        {/* <div className="items-center gap-x-10 inline-block w-full">
+          <Switch className='mx-2' onClick={()=>{setIsLight(!isLight)}} checked={isLight} id="manage-inventory" />
+          <Label htmlFor="manage-inventory">{isLight?'Dark':'Light'}</Label>
+        </div> */}
+        <button className="bg-slate-700 w-fit text-nowrap text-white py-2 px-4 font-bold rounded-lg hover:bg-slate-400 transition-all duration-700 hover:text-black">Hire Me</button>
       </div>
     </nav>
   );

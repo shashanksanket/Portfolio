@@ -3,7 +3,8 @@ import Image from "next/image"
 import contactEffect from "@/assets/landing-page/contact-effect.svg"
 import dots from "@/assets/landing-page/effects-5.svg"
 import contactEffect1 from "@/assets/landing-page/contact-effext-1.svg"
-import contactEffectMobile1 from "@/assets/landing-page/mobile/contact-effect-mobile-1.svg"
+import contactEffectMobile1 from "@/assets/landing-page/contact-effect-mobile-1.svg"
+import verticalDots from "@/assets/landing-page/vertical-dots.svg"
 export default function Contact() {
   const handleSubmit = (e: any) => {
     e.preventDefault()
@@ -28,6 +29,10 @@ export default function Contact() {
         </span>
         <button className="w-fit rounded-full bg-fuchsia-500 my-10 shadow-2xl shadow-fuchsia-500 text-white px-5 py-2 hover:bg-blue-200 hover:text-black hover:shadow-blue-200 transition-all duration-300">Contact Me</button>
       </form>
+      <Image className="absolute hidden md:block -mt-48 -z-50" alt="contactEffectMobile1" src={contactEffectMobile1} />
+      <div className="absolute  hidden md:flex justify-end w-full">
+      <Image className="absolute " alt="vertical-dots" src={verticalDots} />
+      </div>
     </div>
   )
 }

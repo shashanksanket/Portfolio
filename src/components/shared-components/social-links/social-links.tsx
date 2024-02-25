@@ -14,7 +14,7 @@ export default function SocialLinks() {
     <div onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} className="flex w-full md:w-fit justify-around items-start py-4 px-5 bg-pink-200 bg-opacity-40 shadow-xl shadow-pink-400 rounded-2xl md:flex-col gap-10  text-white">
       <span className="flex flex-col md:flex-row gap-x-2 items-center">
         <Image alt="github" width={30} height={30} src={github} />
-        <p className={`cursor-pointer transition-all duration-300  ${isHover ? 'visible' : 'hidden'} hover:bg-gray-800 rounded-lg px-2`}>Github</p>
+        <p className={`cursor-pointer transition-all duration-300 ${isHover ? 'visible' : 'hidden'} hover:bg-gray-800 rounded-lg px-2`}>Github</p>
       </span>
       <span className="flex flex-col md:flex-row gap-x-2 items-center">
         <Image alt="instagram" width={30} height={30} src={instagram} />
