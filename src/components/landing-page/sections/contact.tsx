@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image"
-import contactEffect from "@/assets/landing-page/contact-effect.svg"
 import dots from "@/assets/landing-page/effects-5.svg"
 import contactEffect1 from "@/assets/landing-page/contact-effext-1.svg"
 import contactEffectMobile1 from "@/assets/landing-page/contact-effect-mobile-1.svg"
@@ -27,7 +26,7 @@ export default function Contact() {
           <label className="text-white">Message:</label>
           <textarea className="text-white bg-[#351e2e] rounded-2xl px-3 py-3" placeholder="Enter your name here" />
         </span>
-        <button className="w-fit rounded-full bg-fuchsia-500 my-10 shadow-2xl shadow-fuchsia-500 text-white px-5 py-2 hover:bg-blue-200 hover:text-black hover:shadow-blue-200 transition-all duration-300">Contact Me</button>
+        <button className="w-fit rounded-full ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-fuchsia-500 my-10 shadow-2xl shadow-fuchsia-500 text-white px-5 py-2 hover:bg-blue-200 hover:text-black hover:shadow-blue-200 transition-all duration-300">Contact Me</button>
       </form>
       <Image className="absolute hidden md:block -mt-48 -z-50" alt="contactEffectMobile1" src={contactEffectMobile1} />
       <div className="absolute  hidden md:flex justify-end w-full">

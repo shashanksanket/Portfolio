@@ -14,7 +14,7 @@ export default function SectionSummary() {
         <Image className="absolute top-0 right-0 bg-cover h-[40rem]" src={ellipse2} alt="ellipse2"/>
       </div>
       <div className="flex flex-col mx-20 gap-y-2 items-center text-center w-full">
-        <p className="text-[400%] leading-snug bg-lime-400 bg-clip-text">{name}</p>
+        <p className="text-[400%] font-extrabold leading-snug bg-gradient-to-r from-sky-700 to-pink-300 bg-clip-text text-transparent">{name}</p>
         <div className="flex items-center justify-center w-full px-5">
           <Image alt="line" width={3} height={12} src={Line} />
           <p className="text-[140%]">{summary}</p>
