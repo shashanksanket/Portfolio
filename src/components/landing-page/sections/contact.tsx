@@ -24,7 +24,7 @@ export default function Contact() {
         </span>
         <span className="flex flex-col gap-y-1 w-full">
           <label className="text-white">Message:</label>
-          <textarea className="text-white bg-[#351e2e] rounded-2xl px-3 py-3" placeholder="Enter your name here" />
+          <textarea className="text-white resize-none bg-[#351e2e] rounded-2xl px-3 py-3" placeholder="Enter your name here" />
         </span>
         <button className="w-fit rounded-full ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 bg-fuchsia-500 my-10 shadow-2xl shadow-fuchsia-500 text-white px-5 py-2 hover:bg-blue-200 hover:text-black hover:shadow-blue-200 transition-all duration-300">Contact Me</button>
       </form>

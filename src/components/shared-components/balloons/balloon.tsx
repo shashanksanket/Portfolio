@@ -10,8 +10,8 @@ export default function Balloon({ item, handleClickSkill }: BalloonProps) {
 
   return (
     <img
-      onClick={()=>{handleClickSkill(item)}}
-      className="md:my-5 md:mx-12 cursor-pointer"
+      onMouseEnter={()=>{handleClickSkill(item)}}
+      className="md:my-5 md:mx-12 cursor-pointer hover:-translate-y-3 transition-all duration-500"
       src={item.image}
       alt={item.name}
     />

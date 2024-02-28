@@ -1,0 +1,23 @@
+/* global.css */
+/* Width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to top, #dc67e7, #772ede); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4862cc; 
+  border-radius: 10px;
+
+}

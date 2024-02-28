@@ -6,7 +6,6 @@ import { skills, ISkill } from "@/lib/const";
 import Balloon from "@/components/shared-components/balloons/balloon";
 
 export default function SkillsSection() {
-  const [hover, setHover] = useState<number>(0);
   const [skillDetail, setSkillDetail] = useState<ISkill>({})
   const handleClickSkill = (item: ISkill) => {
     setSkillDetail(item)
@@ -26,7 +25,7 @@ export default function SkillsSection() {
         </div>
       </div>
       <div className=" absolute hidden lg:block top-96 left-96 h-[20rem] w-[40rem] rounded-full blur-3xl opacity-40 bg-gradient-to-r from-sky-700 via-orange-300 to-purple-800"></div>
-      <div className="mx-auto bg-slate-900 w-fit rounded-2xl bg-opacity-50 shadow-2xl shadow-indigo-600 backdrop-blur-3xl my-3 px-5 py-2 text-white">
+      <div className="md:mx-auto bg-slate-900 w-fit rounded-2xl bg-opacity-50 shadow-2xl shadow-indigo-600 backdrop-blur-3xl my-3 px-5 py-2 text-white">
         {skillDetail.name && (
           <div className="flex flex-col gap-y-3 justify-between">
             <span className="flex items-center gap-x-2">

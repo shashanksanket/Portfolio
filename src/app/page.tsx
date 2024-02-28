@@ -5,6 +5,7 @@ import SkillsSection from "@/components/landing-page/sections/skills-section"
 import Projects from "@/components/landing-page/sections/projects";
 import Contact from "@/components/landing-page/sections/contact";
 import Footer from "@/components/footer/footer";
+import '../styles/global.css';
 export default function LandingPage() {
   return (
     <main className="flex flex-col ">
