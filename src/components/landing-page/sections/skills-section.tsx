@@ -12,7 +12,7 @@ export default function SkillsSection() {
   }
 
   return (
-    <main className="flex flex-col z-40 px-10 md:mt-28 md:px-24 text-white relative">
+    <main id="skills" className="flex flex-col z-40 px-10 md:mt-28 md:px-24 text-white relative">
       <div className="absolute left-0">
         <Image alt="back-glow" width={640} height={0} src={backGlow} />
       </div>
@@ -34,7 +34,7 @@ export default function SkillsSection() {
             </span>
             <span className="flex items-center gap-x-2">
               <p className="text-lg font-bold">Project:</p>
-              <p> <a href={skillDetail.projectLink} className="text-blue-500 hover:underline">{skillDetail.projectLink}</a></p>
+              <p> <a href={skillDetail.projectLink} className="text-blue-500 hover:underline">{skillDetail.projectLink?.split('/')[skillDetail.projectLink?.split('/').length-1]}</a></p>
             </span>
             <span className="flex items-center gap-x-2">
               <p className="text-lg font-bold">Type:</p>

@@ -13,32 +13,45 @@ interface CarouselItem {
 
 export const projects: Project[] = [
   {
-    title: "Project 1",
-    date: "xx/xx/xxxx",
-    sourceCode: "https/github.com/shashanksanket/portfolio",
-    liveLink: "https/github.com/shashanksanket/portfolio"
+    title: "Resume Maker",
+    date: "12/12/2023",
+    sourceCode: "https://github.com/shashanksanket/resume-web-pdf",
+    liveLink: "https://resume-web-pdf.vercel.app/"
   },
   {
-    title: "Project 2",
-    date: "xx/xx/xxxx",
-    sourceCode: "https/github.com/shashanksanket/portfolio",
-    liveLink: "https/github.com/shashanksanket/portfolio"
+    title: "Route Planning Tool",
+    date: "17/02/2024",
+    sourceCode: "https://github.com/shashanksanket/route-planning-tool",
+    liveLink: "https://route-planning-tool.vercel.app/"
   },
   {
-    title: "Project 3",
-    date: "xx/xx/xxxx",
-    sourceCode: "https/github.com/shashanksanket/portfolio",
-    liveLink: "https/github.com/shashanksanket/portfolio"
+    title: "CMS",
+    date: "25/10/2023",
+    sourceCode: "https://github.com/shashanksanket/ComexDataEntry",
+    liveLink: "http://cms.comexcomputer.org/"
   },
   {
-    title: "Project 4",
-    date: "xx/xx/xxxx",
-    sourceCode: "https/github.com/shashanksanket/portfolio",
-    liveLink: "https/github.com/shashanksanket/portfolio"
+    title: "UserPortal",
+    date: "04/07/2022",
+    sourceCode: "https://github.com/shashanksanket/UserPortal",
+    liveLink: "https://github.com/shashanksanket/UserPortal/"
+  },
+  {
+    title: "WishIt App",
+    date: "04/12/2023",
+    sourceCode: "https://github.com/shashanksanket/wishit",
+    liveLink: "https://github.com/shashanksanket/wishit"
+  },
+  {
+    title: "Weather App",
+    date: "29/07/2022",
+    sourceCode: "https://github.com/shashanksanket/Weather-App",
+    liveLink: "https://github.com/shashanksanket/Weather-App"
+  },
+  {
+    title: "Project Apsis",
+    date: "11/04/2022",
+    sourceCode: "https://shashanksanket.github.io/Project_Apsis/main.html",
+    liveLink: "https://resume-web-pdf.vercel.app/"
   },
 ];
-
-const carouselItems: CarouselItem[] = projects.map((project, index) => ({
-  position: index,
-  elts: null, // You can set this to null for now
-}));

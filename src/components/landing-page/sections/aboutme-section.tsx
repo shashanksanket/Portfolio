@@ -8,7 +8,7 @@ import dots from "@/assets/landing-page/effects-5.svg"
 
 export default function AboutMe() {
   return (
-    <main className="w-full">
+    <main id="about" className="w-full">
       <div className="absolute bg-cover left-0 mt-48 -z-10">
         <Image src={blackGrow} alt="blackGrow" />
       </div>

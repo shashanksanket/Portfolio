@@ -8,7 +8,7 @@ import mobileEllipse from "@/assets/landing-page/mobile/mobile-ellipse.svg"
 
 export default function SectionSummary() {
   return (
-    <div className="w-full flex flex-col md:flex-row items-center justify-between pt-10 gap-y-5  font-mono text-sm text-white rounded-b-2xl shadow-2xl shadow-sky-950">
+    <div id="home" className="w-full flex flex-col md:flex-row items-center justify-between pt-10 gap-y-5  font-mono text-sm text-white rounded-b-2xl shadow-2xl shadow-sky-950">
       <div className="-z-20">
         <Image className="absolute top-0 left-0 hidden  md:block bg-cover" height={1000} src={ellipse1} alt="ellipse1" />
         <Image className="absolute top-0 right-0 bg-cover h-[40rem]" src={ellipse2} alt="ellipse2"/>
