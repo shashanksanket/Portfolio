@@ -162,4 +162,5 @@ const EllipseSvg = React.forwardRef<SVGSVGElement, EllipseProps>(({ resumeLink }
   );
 },
 );
+EllipseSvg.displayName = "EllipseSvg";
 export default EllipseSvg;
