@@ -19,7 +19,7 @@ export const skills = [
   { "name": "Python", "image":"/assets/skills/python.svg", "type": "Backend", "projectLink": "https://github.com/shashanksanket/UserPortal" },
   { "name": "Web3.Js", "image":"/assets/skills/web3js.svg", "type": "Frontend", "projectLink": "https://github.com/shashanksanket/Verdoc" },
 ];
-
+export const resumeLink = "https://drive.google.com/file/d/1gnwxK27k5E-nu3MFvH3_MELllFDkR6Bi/view?usp=sharing"
 export interface ISkill {
   name?: string,
   projectLink?: string,

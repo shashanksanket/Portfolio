@@ -15,7 +15,6 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Basic validation
     const newErrors: string[] = [];
     if (!name.trim()) {
       newErrors.push("Name field is required");
@@ -34,12 +33,10 @@ export default function Contact() {
       return;
     }
 
-    // If validation passes
     alert("Form submitted successfully");
   };
 
   const isValidEmail = (email: string) => {
-    // Simple email validation regex
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };

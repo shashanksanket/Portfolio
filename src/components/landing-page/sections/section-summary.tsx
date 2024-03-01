@@ -1,14 +1,15 @@
-import { name, summary } from "@/lib/const";
+import { name, summary, resumeLink } from "@/lib/const";
 import ellipse from "@/assets/landing-page/ellipse.svg"
 import Image from "next/image";
 import Line from "@/assets/landing-page/line.svg"
 import ellipse1 from "@/assets/landing-page/ellipse-1.svg"
 import ellipse2 from "@/assets/landing-page/ellipse-2.svg"
 import mobileEllipse from "@/assets/landing-page/mobile/mobile-ellipse.svg"
+import EllipseSvg from "@/assets/svg-components/ellipse";
 
 export default function SectionSummary() {
   return (
-    <div id="home" className="w-full flex flex-col md:flex-row items-center justify-between pt-10 gap-y-5  font-mono text-sm text-white rounded-b-2xl shadow-2xl shadow-sky-950">
+    <div id="home" className="w-full flex flex-col md:flex-row items-center justify-between pt-10 gap-y-5  font-mono text-sm text-white rounded-b-2xl ">
       <div className="-z-20">
         <Image className="absolute top-0 left-0 hidden  md:block bg-cover" height={1000} src={ellipse1} alt="ellipse1" />
         <Image className="absolute top-0 right-0 bg-cover h-[40rem]" src={ellipse2} alt="ellipse2"/>
@@ -21,7 +22,9 @@ export default function SectionSummary() {
         </div>
       </div>
       <div className="overflow-hidden w-full">
-        <Image className="hidden md:block" src={ellipse} alt="ellipse" />
+        <div className="md:block hidden">
+        <EllipseSvg resumeLink={resumeLink}/>
+        </div>
         <Image className="md:hidden block" src={mobileEllipse} alt="ellipse" />
       </div>
     </div>
