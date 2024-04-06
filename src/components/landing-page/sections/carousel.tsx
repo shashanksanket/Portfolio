@@ -6,8 +6,13 @@ import projectPreview1 from "@/assets/landing-page/ProjectPreview-1.png"
 import Link from "next/link";
 import github from "@/assets/social-icons/github-white.svg"
 import link from "@/assets/social-icons/links.svg"
+import { IUser } from "@/lib/util/types/user";
 
-export default function Carousel() {
+interface Carouselprops {
+  project?: IUser["projects"]
+}
+
+export default function Carousel({ project }:Carouselprops) {
   const INTERVAL_LENGTH = 5000;
   const AUTOPLAY = true;
 

@@ -26,3 +26,4 @@ export interface ISkill {
   image?: string,
   type?: string
 }
+export const adminId = process.env.ADMIN_ID

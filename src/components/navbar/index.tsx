@@ -62,7 +62,7 @@ export default function Navbar() {
           <NavItem onClick={() => scrollToSection('skills')} isActive={currentSection === 'skills'}>Skills</NavItem>
           <NavItem onClick={() => scrollToSection('projects')} isActive={currentSection === 'projects'}>Projects</NavItem>
           <NavItem onClick={() => scrollToSection('contact')} isActive={currentSection === 'contact'}>Contact</NavItem>
-          <NavItem onClick={() => scrollToSection('journey')} isActive={currentSection === 'journey'}>Journey</NavItem>
+          {/* <NavItem onClick={() => scrollToSection('journey')} isActive={currentSection === 'journey'}>Journey</NavItem> */}
         </div>
         <div className="lg:hidden flex gap-x-10">
           <button className="cursor-pointer" onClick={toggleMenu}>
@@ -78,7 +78,7 @@ export default function Navbar() {
             <NavItem onClick={() => scrollToSection('skills')} isActive={currentSection === 'skills'}>Skills</NavItem>
             <NavItem onClick={() => scrollToSection('projects')} isActive={currentSection === 'projects'}>Projects</NavItem>
             <NavItem onClick={() => scrollToSection('contact')} isActive={currentSection === 'contact'}>Contact</NavItem>
-            <NavItem onClick={() => scrollToSection('journey')} isActive={currentSection === 'journey'}>Journey</NavItem>
+            {/* <NavItem onClick={() => scrollToSection('journey')} isActive={currentSection === 'journey'}>Journey</NavItem> */}
           </div>
         )}
         <button className="bg-gradient-to-r from-sky-700 to-pink-300 bg-opacity-20 ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 w-fit text-nowrap text-white py-2 px-4 font-bold rounded-lg transition-all duration-700 hover:bg-clip-text ring-2 hover:ring-blue-300 hover:text-transparent">
