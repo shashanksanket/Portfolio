@@ -1,20 +1,69 @@
-import Image from "next/image";
+"use client"
 import SectionSummary from "@/components/landing-page/sections/section-summary";
 import AboutMe from "@/components/landing-page/sections/aboutme-section"
 import SkillsSection from "@/components/landing-page/sections/skills-section"
 import Projects from "@/components/landing-page/sections/projects";
 import Contact from "@/components/landing-page/sections/contact";
-import Footer from "@/components/footer/footer";
 import '../styles/global.css';
+import { useSearchParams } from 'next/navigation'
+import { Client } from "@/lib/client";
+import { useEffect, useState } from "react";
+import { IUser } from "@/lib/util/types/user";
+import { Toaster } from "@medusajs/ui";
 export default function LandingPage() {
-  return (
-    <main className="flex flex-col ">
-      <SectionSummary/>
-      <AboutMe/>
-      <SkillsSection/>
-      <Projects/>
-      <Contact/>
-      <Footer/>
-    </main>
+  const client = new Client()
+  const searchParams = useSearchParams();
+  const [userData, setUserData] = useState<IUser>();
+  const [summarySection, setSummarySection] = useState<IUser["summarySection"]>()
+  const [aboutSection, setAboutSection] = useState<IUser["aboutSection"]>()
+  const [SkillSection, setSkillSection] = useState<IUser["skills"]>()
+  const [project, setProjects] = useState<IUser["projects"]>()
+  const [isLoading, setIsLoading] = useState<Boolean>(true)
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      setIsLoading(true)
+      const portfolioId = searchParams.get('portfolioId') || '65f839b114b6659ae55b0931'
+      try {
+        const fetchedData: IUser = await client.userGetById(portfolioId) as unknown as IUser;
+        console.log(fetchedData)
+        setUserData(fetchedData as unknown as IUser);
+        setSummarySection(fetchedData.summarySection)
+        setAboutSection(fetchedData.aboutSection)
+        setSkillSection(fetchedData.skills)
+        setProjects(fetchedData.projects)
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    fetchUserData();
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000);
+  }, [searchParams]);
+
+  return (<>
+    <Toaster />
+    {!isLoading ? (
+      <main className="flex flex-col overflow-x-hidden text-white ">
+        <SectionSummary summarySection={summarySection} />
+        <AboutMe aboutSection={aboutSection} />
+        <SkillsSection skillsSection={SkillSection} />
+        <Projects project={project} />
+        <Contact />
+      </main>
+    ) : (
+      <div className='absolute top-0 left-0 w-screen h-screen backdrop-blur-2xl z-50'>
+        <div className="flex flex-col gap-y-4 justify-center items-center h-screen">
+          <div className="flex gap-x-4">
+            <div className="rounded-full h-20 w-20 bg-[#f742fb] animate-pulse  hover:translate-y-4 duration-1000"></div>
+            <div className="rounded-full h-20 w-20 bg-[#f742fb] animate-pulse  hover:translate-y-4 duration-1000"></div>
+            <div className="rounded-full h-20 w-20 bg-[#f742fb] animate-pulse  hover:translate-y-4 duration-1000"></div>
+          </div>
+          <p className="font-bold text-2xl bg-gradient-to-r from-sky-700 to-pink-300 bg-clip-text text-transparent">Crafting your personalized portfolio...</p>
+        </div>
+      </div>
+    )}
+  </>
   );
 }
