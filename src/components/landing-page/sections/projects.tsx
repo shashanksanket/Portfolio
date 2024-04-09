@@ -32,7 +32,7 @@ export default function Projects({project}:ProjectParams) {
         </div>
         <div className=" gap-x-10 md:flex-wrap justify-around gap-y-14 hidden md:flex">
           {project?.map((item, index) => (
-          <RevealComp duration='3500ms' y={100} threshold={0}>
+          <RevealComp key={index} duration='3500ms' y={100} threshold={0}>
             <div key={index} className="flex flex-col justify-between items-center gap-y-10">
               <a href={item.liveLink}>
                 <Image src={projectPreview1} className="hover:opacity-40 transition-all duration-500 cursor-pointer" alt="projectPreview1" />

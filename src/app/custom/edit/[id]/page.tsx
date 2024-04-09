@@ -7,7 +7,7 @@ import Projects from "@/components/landing-page/sections/projects";
 import Contact from "@/components/landing-page/sections/contact";
 import Footer from "@/components/footer/footer";
 import RevealComp from '@/components/animation/reveal'
-import '../styles/global.css';
+import '../../../../styles/global.css';
 import { useSearchParams } from 'next/navigation'
 import { adminId } from "@/lib/const";
 import { Client } from "@/lib/client";
