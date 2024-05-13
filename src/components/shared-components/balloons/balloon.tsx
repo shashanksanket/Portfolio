@@ -17,6 +17,7 @@ export default function Balloon({ item, handleClickSkill, image }: BalloonProps)
         onMouseEnter={() => { handleClickSkill(item) }}
         className="md:my-5 md:mx-12 cursor-pointer hover:-translate-y-4 transition-all duration-1000"
         src={image}
+        width={40}
         alt={item.name}
       />
     );

@@ -1,4 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { IUploadImageToS3 } from "./types/upload";
 
 // S3 Config
 const s3Config = {
@@ -12,6 +13,7 @@ export const UploadImage = async (formData: FormData) => {
   try {
     console.log("here",s3Config);
     const file = formData.get("file") as File;
+    const foldername = formData.get("name") as File;
     const s3 = new S3Client({
       region: s3Config.region,
       credentials: {
@@ -22,14 +24,15 @@ export const UploadImage = async (formData: FormData) => {
 
     const command = new PutObjectCommand({
       Bucket: s3Config.bucketName,
-      Key: "folderName/" + file.name, // Specify the folder and file name
-      Body: file // The file to be uploaded
+      Key: `${foldername}/${file.name}`,
+      Body: file
     });
-
+    const imageUrl = `https://${s3Config.bucketName}.s3.${s3Config.region}.amazonaws.com/folderName/${file.name}`;
+    
     const res = await s3.send(command);
     console.log(res);
 
-    return res;
+    return {imageUrl, response:res};
   } catch (e) {
     return e;
   }

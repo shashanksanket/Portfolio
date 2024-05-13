@@ -3,32 +3,38 @@ import Image from "next/image";
 import { Button, Input, Label, useToast } from "@medusajs/ui";
 import { setProjectSectionData } from "@/store/portfolio-data/slice";
 import { useDispatch, useSelector } from "react-redux";
+import { IUploadImageToS3 } from "@/lib/util/types/upload";
+import { UploadImage } from "@/lib/util/uploadImage";
 
 interface ModalProps {
   setShowProjectModal: (showModal: boolean) => void;
 }
 
 export default function ProjectModal({ setShowProjectModal }: ModalProps) {
+  const summaryData = useSelector((state: any) => state.portfolio.summary)
   const [title, setTitle] = useState<string>("");
   const [liveLink, setLiveLink] = useState<string>("");
   const [date, setDate] = useState<string>("");
   const [sourceCode, setSourceCode] = useState<string>("");
-  const [image, setImage] = useState<Blob>(new Blob());
+  const [imageUrl, setImageUrl] = useState<string>("");
+
 
   const projects = useSelector((state: any) => state.portfolio.projects)
 
   const dispatch = useDispatch()
   const { toast } = useToast()
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const blob = new Blob([reader.result as ArrayBuffer]);
-        setImage(blob);
-      };
-      reader.readAsArrayBuffer(file);
+    if(file){
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("name", summaryData.name);
+      formData.append("folderName", "nextjs-server-action");
+      const data = await UploadImage(formData) as IUploadImageToS3; 
+      if(data.imageUrl){
+        setImageUrl(data.imageUrl)
+      }
     }
   };
 
@@ -40,7 +46,7 @@ export default function ProjectModal({ setShowProjectModal }: ModalProps) {
   };
 
   const handleSubmit = () => {
-    if (!title || !date || !liveLink || !sourceCode || !image.size) {
+    if (!title || !date || !liveLink || !sourceCode || !imageUrl) {
       toast({
         title: "Error",
         description: "Please fill in all fields",
@@ -53,7 +59,7 @@ export default function ProjectModal({ setShowProjectModal }: ModalProps) {
       date: date,
       sourceCode: sourceCode,
       liveLink: liveLink,
-      image: image
+      image: imageUrl
     }]))
     setShowProjectModal(false)
     toast({
@@ -93,7 +99,7 @@ export default function ProjectModal({ setShowProjectModal }: ModalProps) {
               id="fileInput"
               className="hidden"
             />
-            {!image.size && (
+            {imageUrl.length==0 && (
               <Image
                 src={"/assets/misc/before-upload.svg"}
                 alt="upload"
@@ -102,7 +108,7 @@ export default function ProjectModal({ setShowProjectModal }: ModalProps) {
                 height={41}
               />
             )}
-            {image.size && (
+            {imageUrl.length>0 && (
               <Image
                 src={"/assets/misc/after-upload.svg"}
                 alt="uploaded"
@@ -110,7 +116,7 @@ export default function ProjectModal({ setShowProjectModal }: ModalProps) {
                 height={33}
               />
             )}
-            <span>{image ? "File selected" : "No file selected"}</span>
+            <span>{imageUrl.length>0 ? "File selected" : "No file selected"}</span>
           </div>
         </div>
 
@@ -122,3 +128,5 @@ export default function ProjectModal({ setShowProjectModal }: ModalProps) {
     </div>
   );
 }
+
+

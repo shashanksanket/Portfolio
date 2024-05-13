@@ -13,7 +13,7 @@ export interface IUser {
   }
   skills: {
     name: string,
-    image: Blob,
+    image: string,
     type: string,
     projectLink: string,
   }[],
@@ -22,6 +22,6 @@ export interface IUser {
     date: string,
     sourceCode: string,
     liveLink: string,
-    image: Blob,
+    image: string,
   }[],
 }

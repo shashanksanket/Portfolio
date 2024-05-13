@@ -7,28 +7,7 @@ interface TableProps {
 }
 
 export default function Table({ data }: TableProps) {
-  const [imageUrls, setImageUrls] = useState<string[]>([])
   const [headers, setHeaders] = useState<string[]>([])
-
-  useEffect(() => {
-    async function loadImageUrls() {
-      try {
-        if (data) {
-          const urls = await Promise.all(
-            data.map(async (item) => {
-              const url = await blobToImageURL(item.image);
-              return url;
-            })
-          );
-          setImageUrls(urls);
-        }
-      } catch (error) {
-        console.error("Error loading image URLs:", error);
-      }
-    }
-    loadImageUrls();
-  }, [data]);
-
   useEffect(() => {
     if (data.length > 0 && headers.length === 0) {
       const initialHeaders = Object.keys(data[0]).map(key => key.toUpperCase());
@@ -36,16 +15,6 @@ export default function Table({ data }: TableProps) {
     }
   }, [data, headers]);
 
-  const blobToImageURL = (blob: Blob): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        resolve(reader.result as string);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  };
 
   return (
     <table className="w-full py-10 bg-slate-500 backdrop-blur-md bg-opacity-40 rounded-2xl">
@@ -66,11 +35,11 @@ export default function Table({ data }: TableProps) {
                   <td className="text-center w-full">{index + 1}</td>
                   {Object.entries(item).map(([key, value], idx) => (
                     <>
-                      {typeof value == 'string' ? (
-                        <td className="text-center w-full">{value}</td>
-                      ) : (
-                        <td className="text-center w-full mx-auto flex justify-center"><Image alt="image" width={20} height={40} src={imageUrls[index]} /></td>
-                      )}
+                    {key=="image"? (
+                      <td key={idx} className="text-center w-full flex justify-center"><img width={40} src={value}/></td>
+                    ):(
+                      <td key={idx} className="text-center w-full">{value}</td>
+                    )}
                     </>
                   ))}
                 </tr>

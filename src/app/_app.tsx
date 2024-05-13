@@ -12,15 +12,15 @@ export default function Component({
 }>) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <Provider store={store}>
-      <Navbar />
-      <div className="pt-36 text-white">
-        {children}
-      </div>
-      <div className="fixed bottom-0 w-full">
-        <Footer />
-      </div>
-    </Provider>
+      <Provider store={store}>
+        <Navbar/>
+        <div className="pt-36 text-white">
+          {children}
+        </div>
+        <div className="fixed bottom-0 w-full">
+          <Footer />
+        </div>
+      </Provider>
     </Suspense>
   );
 }

@@ -3,8 +3,8 @@ import Image from "next/image";
 import { Button, Input, Label } from "@medusajs/ui";
 import { useDispatch, useSelector } from "react-redux";
 import { setSkillSectionData } from "@/store/portfolio-data/slice";
-import ImageUploading, { ImageListType } from "react-images-uploading";
 import { useToast } from "@medusajs/ui";
+import { IUploadImageToS3 } from "@/lib/util/types/upload";
 
 import { UploadImage } from "@/lib/util/uploadImage";
 
@@ -16,10 +16,12 @@ interface ModalProps {
 export default function SkillModal({ setShowSkillModal }: ModalProps) {
   const dispatch = useDispatch()
   const { toast } = useToast()
+  const summaryData = useSelector((state: any) => state.portfolio.summary)
   const [name, setName] = useState<string>("");
   const [type, setType] = useState<string>("");
   const [projectLink, setProjectLink] = useState<string>("");
   const [image, setImage] = useState<any>();
+  const [imageUrl, setImageUrl] = useState<string>("");
   const skillsData = useSelector((state: any) => state.portfolio.skills)
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,13 +30,14 @@ export default function SkillModal({ setShowSkillModal }: ModalProps) {
       setImage(file)
       const formData = new FormData();
       formData.append("file", file);
+      formData.append("name", summaryData.name);
       formData.append("folderName", "nextjs-server-action");
-      const data = await UploadImage(formData);
-      console.log(data)
+      const data = await UploadImage(formData) as IUploadImageToS3; 
+      if(data.imageUrl){
+        setImageUrl(data.imageUrl)
+      }
     }
   };
-
-
 
   const handleInput = (id: string) => {
     const fileInput = document.getElementById(id);
@@ -43,7 +46,7 @@ export default function SkillModal({ setShowSkillModal }: ModalProps) {
     }
   };
   const handleSubmit = () => {
-    if (!name || !type || !projectLink || !image?.size) {
+    if (!name || !type || !projectLink || !imageUrl) {
       toast({
         title: "Error",
         description: "Please fill in all fields",
@@ -55,7 +58,7 @@ export default function SkillModal({ setShowSkillModal }: ModalProps) {
       name: name,
       type: type,
       projectLink: projectLink,
-      image: image
+      image: imageUrl
     }]));
     setShowSkillModal(false)
     toast({
@@ -84,22 +87,23 @@ export default function SkillModal({ setShowSkillModal }: ModalProps) {
         <div onClick={() => handleInput("fileInput")} className="flex flex-col gap-3">
           <Label>Upload Preview Image</Label>
           <div className="flex space-x-3 cursor-pointer border py-2 rounded-lg border-dashed justify-center border-white">
-            <input
+          <input
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
               id="fileInput"
               className="hidden"
             />
-            {!image?.size && (
+            {imageUrl.length==0 && (
               <Image
                 src={"/assets/misc/before-upload.svg"}
                 alt="upload"
+                className="mx-2"
                 width={40}
                 height={41}
               />
             )}
-            {image?.size && (
+            {imageUrl.length>0 && (
               <Image
                 src={"/assets/misc/after-upload.svg"}
                 alt="uploaded"
@@ -107,7 +111,7 @@ export default function SkillModal({ setShowSkillModal }: ModalProps) {
                 height={33}
               />
             )}
-            <span>{image ? "File selected" : "No file selected"}</span>
+            <span>{imageUrl.length>0 ? "File selected" : "No file selected"}</span>
           </div>
         </div>
 

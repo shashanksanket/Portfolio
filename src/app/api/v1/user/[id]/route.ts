@@ -6,7 +6,6 @@ interface Params {
 }
 
 export async function GET(req: any, { params }:{params:Params}) {
-  console.log("hello")
   try {
     await connectToDataBase();
     const id = params.id

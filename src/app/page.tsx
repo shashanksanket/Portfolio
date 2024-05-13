@@ -4,6 +4,8 @@ import AboutMe from "@/components/landing-page/sections/aboutme-section"
 import SkillsSection from "@/components/landing-page/sections/skills-section"
 import Projects from "@/components/landing-page/sections/projects";
 import Contact from "@/components/landing-page/sections/contact";
+import { setName } from "@/store/user-data/slice";
+import { useDispatch } from "react-redux";
 import '../styles/global.css';
 import { useSearchParams } from 'next/navigation'
 import { Client } from "@/lib/client";
@@ -12,8 +14,8 @@ import { IUser } from "@/lib/util/types/user";
 import { Toaster } from "@medusajs/ui";
 export default function LandingPage() {
   const client = new Client()
+  const dispatch = useDispatch()
   const searchParams = useSearchParams();
-  const [userData, setUserData] = useState<IUser>();
   const [summarySection, setSummarySection] = useState<IUser["summarySection"]>()
   const [aboutSection, setAboutSection] = useState<IUser["aboutSection"]>()
   const [SkillSection, setSkillSection] = useState<IUser["skills"]>()
@@ -27,7 +29,7 @@ export default function LandingPage() {
       try {
         const fetchedData: IUser = await client.userGetById(portfolioId) as unknown as IUser;
         console.log(fetchedData)
-        setUserData(fetchedData as unknown as IUser);
+        dispatch(setName(fetchedData.aboutSection.email))
         setSummarySection(fetchedData.summarySection)
         setAboutSection(fetchedData.aboutSection)
         setSkillSection(fetchedData.skills)

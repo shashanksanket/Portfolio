@@ -9,7 +9,7 @@ interface SkillParams {
   skillsSection?: IUser["skills"]
 }
 export default function SkillsSection({ skillsSection }: SkillParams) {
-  const [imageUrls, setImageUrls] = useState<string[]>([])
+  const [images, setImages] = useState<string[]>([])
 
   const [skillDetail, setSkillDetail] = useState<IUser["skills"][0]>()
   const handleClickSkill = (item: IUser["skills"][0]) => {
@@ -20,13 +20,10 @@ export default function SkillsSection({ skillsSection }: SkillParams) {
     async function loadImageUrls() {
       try {
         if (skillsSection) {
-          const urls = await Promise.all(
-            skillsSection.map(async (item) => {
-              const url = await blobToImageURL(item.image);
-              return url;
-            })
-          );
-          setImageUrls(urls);
+          const images = skillsSection.map((item,idx)=>{
+            return item.image
+          })
+          setImages(images);
         }
       } catch (error) {
         console.error("Error loading image URLs:", error);
@@ -35,16 +32,6 @@ export default function SkillsSection({ skillsSection }: SkillParams) {
     loadImageUrls();
   }, [skillsSection]);
 
-  const blobToImageURL = (blob: Blob): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        resolve(reader.result as string);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  };
   return (
     <main id="skills" className="flex flex-col px-10 md:mt-28 md:px-24 text-white relative">
       <div className="absolute left-0 -z-20">
@@ -53,8 +40,8 @@ export default function SkillsSection({ skillsSection }: SkillParams) {
       <p className="text-[400%] text-center font-bold ">Skills</p>
       <div className="flex pt-5 justify-center items-center relative">
         <div className="flex flex-wrap z-10 justify-between">
-          {imageUrls.length>0 && skillsSection?.map((item, index) => (
-            <Balloon handleClickSkill={handleClickSkill} image={imageUrls[index]} key={index} item={item} />
+          {images.length>0 && skillsSection?.map((item, index) => (
+            <Balloon handleClickSkill={handleClickSkill} image={images[index]} key={index} item={item} />
           ))}
         </div>
       </div>

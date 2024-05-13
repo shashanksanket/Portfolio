@@ -35,7 +35,7 @@ export default function Projects({project}:ProjectParams) {
           <RevealComp key={index} duration='3500ms' y={100} threshold={0}>
             <div key={index} className="flex flex-col justify-between items-center gap-y-10">
               <a href={item.liveLink}>
-                <Image src={projectPreview1} className="hover:opacity-40 transition-all duration-500 cursor-pointer" alt="projectPreview1" />
+                <img src={item.image} width={40} className="hover:opacity-40 transition-all duration-500 cursor-pointer" alt="projectPreview1" />
               </a>
               <span className="flex flex-col text-center text-white">
                 <p className="font-bold text-4xl">

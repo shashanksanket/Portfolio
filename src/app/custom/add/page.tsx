@@ -12,7 +12,7 @@ export default function LandingPage() {
   const [tab, setTab] = useState<string>("Summary")
   
   return (
-    <div className="absolute overflow-x-hidden top-0 left-0 h-screen w-screen backdrop-blur-lg z-50">
+    <div className="absolute overflow-x-hidden top-0 left-0 h-screen w-screen backdrop-blur-lg z-[5000]">
       <main className="flex flex-col overflow-x-hidden p-20 items-center gap-y-10 justify-between ">
         <div className="flex text-white w-full justify-between">
           <div onClick={() => setTab("Summary")} className={`${tab == "Summary" ? 'border-b-2' : ''} pb-3 cursor-pointer hover:font-extrabold transition-all duration-500`}>
